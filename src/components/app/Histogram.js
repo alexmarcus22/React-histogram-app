@@ -111,9 +111,6 @@ const Histogram = ({ data }) => {
             }
           </Group>
           <Group>
-            Bar
-          </Group>
-          <Group>
             <AxisBottom top={innerHeight} scale={xScale} />
           </Group>
           <Group>
