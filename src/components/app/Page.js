@@ -1,13 +1,13 @@
-import * as React from 'react';
+import { useState } from 'react';
 import { ThemeProvider, Container } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import './Page.css'
-import { useLazyQuery, gql } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
 import GET_POSTS from '../../services/api/query';
-import { useState } from 'react'
+import Histogram from './Histogram';
 
 const theme = createTheme({
   palette: {
@@ -20,21 +20,20 @@ const theme = createTheme({
   },
 });
 
-
-
 const Page = () => {
-  const [getPosts, { loading, data, error }] = useLazyQuery(GET_POSTS, {
-    fetchPolicy: 'cache-and-network'
+  const [getPosts, { loading, data }] = useLazyQuery(GET_POSTS, {
+    fetchPolicy: 'cache-and-network',
   });
-
 
   return (
     <div className="page">
       <ThemeProvider theme={theme}>
         <Container maxWidth="xl" className="page-container">
           <Typography variant="h1">Histogram Posts</Typography>
-          <Button variant="contained" color="secondary" onClick={getPosts}>Fetch Posts</Button>
-          {!loading ? null : <div>loading..</div>}
+          {!loading ? <Button variant="contained" color="secondary" onClick={getPosts} sx={{
+            marginBottom: '5rem'
+          }}>Show Histogram</Button> : <div>loading...</div>}
+          {!data ? null : <Histogram data={data} />}
         </Container>
       </ThemeProvider>
     </div>

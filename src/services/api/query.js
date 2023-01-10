@@ -1,17 +1,12 @@
 import { gql } from '@apollo/client'
 
 const GET_POSTS = gql`
-    query GetLocations {
-      allPosts(count: 25) {
+  query GetLocations {
+    allPosts(count: 300) {
       id
       title
       body
       createdAt
-      likelyTopics {
-        label
-        likelihood
-        __typename
-      }
       author {
         firstName
         lastName
