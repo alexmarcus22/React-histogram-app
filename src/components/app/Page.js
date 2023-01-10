@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { ThemeProvider, Container } from '@mui/system';
 import { createTheme } from '@mui/material/styles';
 import { purple } from '@mui/material/colors';
